@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>@ViewBag.Title</title>
+	<link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <nav>
+        <ul id="menu">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Carriage Table", "Index", "Carriage")</li>
+            <li>@Html.ActionLink("Client Table", "Index", "Client")</li>
+            <li>@Html.ActionLink("Employees Table", "Index", "Employees")</li>
+            <li>@Html.ActionLink("Leasing Company Table", "Index", "LeasingCompany")</li>
+            <li>@Html.ActionLink("Order Table", "Index", "Order")</li>
+            <li>@Html.ActionLink("Storage Table", "Index", "Storage")</li>
+            <li>@Html.ActionLink("Transport Table", "Index", "Transport")</li>
+        </ul>
+    </nav>
+	@RenderBody()
+</body>
+</html>

@@ -1,0 +1,64 @@
+﻿@model IEnumerable<TechDelivery.Models.OrderTable>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Order Table</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.Label("Ordered Items")
+        </th>
+        <th>
+            @Html.Label("Cost")
+        </th>
+        <th>
+            @Html.Label("Duration")
+        </th>
+        <th>
+            @Html.Label("Client")
+        </th>
+        <th>
+            @Html.Label("Employee")
+        </th>
+        <th>
+            @Html.Label("Storage")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderItems)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderCost)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderDuration)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Client.ClientName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employees.EmployeeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Storage.StorageName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.OrderId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.OrderId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.OrderId })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,58 @@
+﻿@model IEnumerable<TechDelivery.Models.Employees>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Employees Table</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.Label("Name")
+        </th>
+        <th>
+            @Html.Label("Contact info")
+        </th>
+        <th>
+            @Html.Label("Expirience")
+        </th>
+        <th>
+            @Html.Label("Status")
+        </th>
+        <th>
+            @Html.Label("Carriage contact info")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmployeeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmployeeContactInfo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmployeeExperience)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmployeeStatusTable.CurrentStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Carriage.CarriageContactInfo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.EmployeeId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.EmployeeId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.EmployeeId })
+        </td>
+    </tr>
+}
+
+</table>

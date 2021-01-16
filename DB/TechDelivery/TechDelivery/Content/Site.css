@@ -1,0 +1,198 @@
+﻿/*body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+/*.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+/*.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+/*input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+
+    body {
+    border-color:#ff6a00
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    border-color: #4b4075;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/*таблицы программы*/
+table {
+    margin-left:auto;
+    margin-right:auto;
+    border-spacing: 0 10px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 21px;
+    /*font-weight: bold;*/
+}
+
+th {
+    padding: 10px 20px;
+    background: #94CDF9;
+    color: #000000;
+    border-right: 2px solid;
+    font-size: 0.9em;
+}
+
+    th:first-child {
+        text-align: left;
+    }
+
+    th:last-child {
+        border-right: none;
+    }
+
+td {
+    vertical-align: middle;
+    padding: 5px;
+    font-size: 12px;
+    /*text-align: center;*/
+    border-left: 1px solid #56433D;
+    border-top: 1px solid #56433D;
+    border-bottom: 1px solid #56433D;
+    border-right: 1px solid #56433D;
+}
+
+td:nth-child(2) {
+    text-align: left;
+}
+
+/*Главное меню*/
+ul {
+    list-style: none; /*убираем маркеры списка*/
+    margin: 0; /*убираем отступы*/
+    padding-left: 0; /*убираем отступы*/
+    margin-top: 25px; /*делаем отступ сверху*/
+    background: #94CDF9; /*добавляем фон всему меню*/
+    height: 50px; /*задаем высоту*/
+}
+
+#menu a {
+    text-decoration: none; /*убираем подчеркивание текста ссылок*/
+    background: #94CDF9; /*добавляем фон к пункту меню*/
+    color: #fff; /*меняем цвет ссылок*/
+    padding: 0px 15px; /*добавляем отступ*/
+    font-family: arial; /*меняем шрифт*/
+    line-height: 50px; /*ровняем меню по вертикали*/
+    display: block;
+    border-right: 1px solid #000000; /*добавляем бордюр справа*/
+    -moz-transition: all 0.3s 0.01s ease; /*делаем плавный переход*/
+    -o-transition: all 0.3s 0.01s ease;
+    -webkit-transition: all 0.3s 0.01s ease;
+}
+
+    #menu a:hover {
+        background: #D43737; /*добавляем эффект при наведении*/
+    }
+
+#menu li {
+    float: left; /*Размещаем список горизонтально для реализации меню*/
+    position: relative; /*задаем позицию для позиционирования*/
+    left: 15%
+}
+
+
+li:hover > ul > li {
+    float: none; /*Убираем горизонтальное позиционирование*/
+}
+/*-----------------------------------------------------------------------*/
+
+#menu ul {
+    list-style: none; /*убираем маркеры списка*/
+    margin: 0; /*убираем отступы*/
+    padding-left: 0; /*убираем отступы*/
+    margin-top: 25px; /*делаем отступ сверху*/
+    background: #94CDF9; /*добавляем фон всему меню*/
+    height: 50px; /*задаем высоту*/
+}
+
+#menu a {
+    text-decoration: none; /*убираем подчеркивание текста ссылок*/
+    background: #94CDF9; /*добавляем фон к пункту меню*/
+    color: #fff; /*меняем цвет ссылок*/
+    padding: 0px 15px; /*добавляем отступ*/
+    font-family: arial; /*меняем шрифт*/
+    line-height: 50px; /*ровняем меню по вертикали*/
+    display: block;
+    border-right: 1px solid #000000; /*добавляем бордюр справа*/
+    -moz-transition: all 0.3s 0.01s ease; /*делаем плавный переход*/
+}
+
+h2 {
+    font-family: Arial;
+    text-align: center;
+    display: block;
+}
+
+p {
+    font-family: Arial;
+    display: block;
+    font-size: 14px;
+    text-decoration: none;
+    color: #94CDF9;
+    background-color: #94CDF9;
+    border: 1px solid #660000;
+    border-radius: 5px;
+    color: #fff;
+    margin-right: 10px;
+    padding: 10px 10px 10px 10px;
+    float: right;
+}
+
+    p:hover {
+        background: #D43737;
+    }
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}

@@ -1,0 +1,52 @@
+﻿@model IEnumerable<TechDelivery.Models.Carriage>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Carriage Table</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.Label("Contact info")
+        </th>
+        <th>
+            @Html.Label("Departure date")
+        </th>
+        <th>
+            @Html.Label("Arrival date")
+        </th>
+        <th>
+            @Html.Label("Transport")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CarriageContactInfo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CarriageDepartureDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CarriageArrivalDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Transport.TransportType)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CarriageId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CarriageId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CarriageId })
+        </td>
+    </tr>
+}
+
+</table>

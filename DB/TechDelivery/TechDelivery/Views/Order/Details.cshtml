@@ -1,0 +1,67 @@
+﻿@model TechDelivery.Models.OrderTable
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>OrderTable</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderItems)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderItems)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderCost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderCost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderDuration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderDuration)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Client.ClientName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Client.ClientName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employees.EmployeeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employees.EmployeeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Storage.StorageName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Storage.StorageName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.OrderId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

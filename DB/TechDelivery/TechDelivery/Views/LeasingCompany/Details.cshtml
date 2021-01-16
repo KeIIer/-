@@ -1,0 +1,59 @@
+﻿@model TechDelivery.Models.LeasingCompany
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>LeasingCompany</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LeasingCompanyName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LeasingCompanyName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LeasingCompanyContactInfo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LeasingCompanyContactInfo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LeasingCompanyTransportType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LeasingCompanyTransportType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LeasingCompanyRentCost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LeasingCompanyRentCost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LeasingCompanyRentTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LeasingCompanyRentTime)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.LeasingCompanyId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

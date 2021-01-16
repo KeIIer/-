@@ -1,0 +1,785 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище TechDeliveryModel" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Carriage">
+          <Key>
+            <PropertyRef Name="CarriageId" />
+          </Key>
+          <Property Name="CarriageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CarriageContactInfo" Type="nvarchar" MaxLength="255" />
+          <Property Name="CarriageDepartureDate" Type="date" />
+          <Property Name="CarriageArrivalDate" Type="date" />
+          <Property Name="TransportReference" Type="int" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="ClientId" />
+          </Key>
+          <Property Name="ClientId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientName" Type="nvarchar" MaxLength="255" />
+          <Property Name="ClientContactInfo" Type="nvarchar" MaxLength="255" />
+          <Property Name="ClientStatus" Type="int" />
+        </EntityType>
+        <EntityType Name="ClientStatusTable">
+          <Key>
+            <PropertyRef Name="ClientStatusId" />
+          </Key>
+          <Property Name="ClientStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatusOfClient" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="EmployeeId" />
+          </Key>
+          <Property Name="EmployeeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeName" Type="nvarchar" MaxLength="255" />
+          <Property Name="EmployeeContactInfo" Type="nvarchar" MaxLength="255" />
+          <Property Name="EmployeeExperience" Type="nvarchar" MaxLength="255" />
+          <Property Name="EmployeeStatus" Type="int" />
+          <Property Name="CarriageReference" Type="int" />
+        </EntityType>
+        <EntityType Name="EmployeeStatusTable">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Name="StatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CurrentStatus" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="LeasingCompany">
+          <Key>
+            <PropertyRef Name="LeasingCompanyId" />
+          </Key>
+          <Property Name="LeasingCompanyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LeasingCompanyName" Type="nvarchar" MaxLength="255" />
+          <Property Name="LeasingCompanyContactInfo" Type="nvarchar" MaxLength="255" />
+          <Property Name="LeasingCompanyTransportType" Type="int" />
+          <Property Name="LeasingCompanyRentCost" Type="int" />
+          <Property Name="LeasingCompanyRentTime" Type="int" />
+        </EntityType>
+        <EntityType Name="LeasingCompanyTransportTable">
+          <Key>
+            <PropertyRef Name="LSTransportId" />
+          </Key>
+          <Property Name="LSTransportId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LSTransportTypes" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="OrderTable">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderItems" Type="nvarchar" MaxLength="255" />
+          <Property Name="OrderCost" Type="int" />
+          <Property Name="ClientReference" Type="int" />
+          <Property Name="StorageReference" Type="int" />
+          <Property Name="OrderDuration" Type="int" />
+          <Property Name="EmployeeReference" Type="int" />
+        </EntityType>
+        <EntityType Name="Storage">
+          <Key>
+            <PropertyRef Name="StorageId" />
+          </Key>
+          <Property Name="StorageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StorageName" Type="nvarchar" MaxLength="255" />
+          <Property Name="StorageItems" Type="nvarchar" MaxLength="255" />
+          <Property Name="StorageType" Type="int" />
+        </EntityType>
+        <EntityType Name="StorageTypeTable">
+          <Key>
+            <PropertyRef Name="TypeId" />
+          </Key>
+          <Property Name="TypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StorageTypes" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Transport">
+          <Key>
+            <PropertyRef Name="TransportId" />
+          </Key>
+          <Property Name="TransportId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TransportType" Type="nvarchar" MaxLength="255" />
+          <Property Name="TransportExpluatationCost" Type="int" />
+          <Property Name="LeasingCompanyReference" Type="int" />
+        </EntityType>
+        <Association Name="Client_to_ClientStatus">
+          <End Role="ClientStatusTable" Type="Self.ClientStatusTable" Multiplicity="0..1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClientStatusTable">
+              <PropertyRef Name="ClientStatusId" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="ClientStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Employees_to_Carriage">
+          <End Role="Carriage" Type="Self.Carriage" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carriage">
+              <PropertyRef Name="CarriageId" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="CarriageReference" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Employees_To_Status">
+          <End Role="EmployeeStatusTable" Type="Self.EmployeeStatusTable" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeStatusTable">
+              <PropertyRef Name="StatusId" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="EmployeeStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Carriage__Transp__0E6E26BF">
+          <End Role="Transport" Type="Self.Transport" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Carriage" Type="Self.Carriage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transport">
+              <PropertyRef Name="TransportId" />
+            </Principal>
+            <Dependent Role="Carriage">
+              <PropertyRef Name="TransportReference" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderTabl__Stora__1BC821DD">
+          <End Role="Storage" Type="Self.Storage" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="OrderTable" Type="Self.OrderTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Storage">
+              <PropertyRef Name="StorageId" />
+            </Principal>
+            <Dependent Role="OrderTable">
+              <PropertyRef Name="StorageReference" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="LC_to_LCT">
+          <End Role="LeasingCompanyTransportTable" Type="Self.LeasingCompanyTransportTable" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="LeasingCompany" Type="Self.LeasingCompany" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LeasingCompanyTransportTable">
+              <PropertyRef Name="LSTransportId" />
+            </Principal>
+            <Dependent Role="LeasingCompany">
+              <PropertyRef Name="LeasingCompanyTransportType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Order_to_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="OrderTable" Type="Self.OrderTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ClientId" />
+            </Principal>
+            <Dependent Role="OrderTable">
+              <PropertyRef Name="ClientReference" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Order_to_Employee">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="OrderTable" Type="Self.OrderTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="EmployeeId" />
+            </Principal>
+            <Dependent Role="OrderTable">
+              <PropertyRef Name="EmployeeReference" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Storage_to_StorageTypeTable">
+          <End Role="StorageTypeTable" Type="Self.StorageTypeTable" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Storage" Type="Self.Storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StorageTypeTable">
+              <PropertyRef Name="TypeId" />
+            </Principal>
+            <Dependent Role="Storage">
+              <PropertyRef Name="StorageType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Transport_to_LeasingCompany">
+          <End Role="LeasingCompany" Type="Self.LeasingCompany" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Transport" Type="Self.Transport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LeasingCompany">
+              <PropertyRef Name="LeasingCompanyId" />
+            </Principal>
+            <Dependent Role="Transport">
+              <PropertyRef Name="LeasingCompanyReference" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище TechDeliveryModelContainer">
+          <EntitySet Name="Carriage" EntityType="Self.Carriage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClientStatusTable" EntityType="Self.ClientStatusTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeeStatusTable" EntityType="Self.EmployeeStatusTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LeasingCompany" EntityType="Self.LeasingCompany" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LeasingCompanyTransportTable" EntityType="Self.LeasingCompanyTransportTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderTable" EntityType="Self.OrderTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Storage" EntityType="Self.Storage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StorageTypeTable" EntityType="Self.StorageTypeTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transport" EntityType="Self.Transport" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="Client_to_ClientStatus" Association="Self.Client_to_ClientStatus">
+            <End Role="ClientStatusTable" EntitySet="ClientStatusTable" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="Employees_to_Carriage" Association="Self.Employees_to_Carriage">
+            <End Role="Carriage" EntitySet="Carriage" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="Employees_To_Status" Association="Self.Employees_To_Status">
+            <End Role="EmployeeStatusTable" EntitySet="EmployeeStatusTable" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Carriage__Transp__0E6E26BF" Association="Self.FK__Carriage__Transp__0E6E26BF">
+            <End Role="Transport" EntitySet="Transport" />
+            <End Role="Carriage" EntitySet="Carriage" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderTabl__Stora__1BC821DD" Association="Self.FK__OrderTabl__Stora__1BC821DD">
+            <End Role="Storage" EntitySet="Storage" />
+            <End Role="OrderTable" EntitySet="OrderTable" />
+          </AssociationSet>
+          <AssociationSet Name="LC_to_LCT" Association="Self.LC_to_LCT">
+            <End Role="LeasingCompanyTransportTable" EntitySet="LeasingCompanyTransportTable" />
+            <End Role="LeasingCompany" EntitySet="LeasingCompany" />
+          </AssociationSet>
+          <AssociationSet Name="Order_to_Client" Association="Self.Order_to_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="OrderTable" EntitySet="OrderTable" />
+          </AssociationSet>
+          <AssociationSet Name="Order_to_Employee" Association="Self.Order_to_Employee">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="OrderTable" EntitySet="OrderTable" />
+          </AssociationSet>
+          <AssociationSet Name="Storage_to_StorageTypeTable" Association="Self.Storage_to_StorageTypeTable">
+            <End Role="StorageTypeTable" EntitySet="StorageTypeTable" />
+            <End Role="Storage" EntitySet="Storage" />
+          </AssociationSet>
+          <AssociationSet Name="Transport_to_LeasingCompany" Association="Self.Transport_to_LeasingCompany">
+            <End Role="LeasingCompany" EntitySet="LeasingCompany" />
+            <End Role="Transport" EntitySet="Transport" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TechDeliveryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Carriage">
+          <Key>
+            <PropertyRef Name="CarriageId" />
+          </Key>
+          <Property Name="CarriageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CarriageContactInfo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CarriageDepartureDate" Type="DateTime" Precision="0" />
+          <Property Name="CarriageArrivalDate" Type="DateTime" Precision="0" />
+          <Property Name="TransportReference" Type="Int32" />
+          <NavigationProperty Name="Employees" Relationship="Self.Employees_to_Carriage" FromRole="Carriage" ToRole="Employees" />
+          <NavigationProperty Name="Transport" Relationship="Self.FK__Carriage__Transp__0E6E26BF" FromRole="Carriage" ToRole="Transport" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="ClientId" />
+          </Key>
+          <Property Name="ClientId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ClientContactInfo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ClientStatus" Type="Int32" />
+          <NavigationProperty Name="ClientStatusTable" Relationship="Self.Client_to_ClientStatus" FromRole="Client" ToRole="ClientStatusTable" />
+          <NavigationProperty Name="OrderTable" Relationship="Self.Order_to_Client" FromRole="Client" ToRole="OrderTable" />
+        </EntityType>
+        <EntityType Name="ClientStatusTable">
+          <Key>
+            <PropertyRef Name="ClientStatusId" />
+          </Key>
+          <Property Name="ClientStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusOfClient" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Client" Relationship="Self.Client_to_ClientStatus" FromRole="ClientStatusTable" ToRole="Client" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="EmployeeId" />
+          </Key>
+          <Property Name="EmployeeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeContactInfo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeExperience" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeStatus" Type="Int32" />
+          <Property Name="CarriageReference" Type="Int32" />
+          <NavigationProperty Name="Carriage" Relationship="Self.Employees_to_Carriage" FromRole="Employees" ToRole="Carriage" />
+          <NavigationProperty Name="EmployeeStatusTable" Relationship="Self.Employees_To_Status" FromRole="Employees" ToRole="EmployeeStatusTable" />
+          <NavigationProperty Name="OrderTable" Relationship="Self.Order_to_Employee" FromRole="Employees" ToRole="OrderTable" />
+        </EntityType>
+        <EntityType Name="EmployeeStatusTable">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Name="StatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CurrentStatus" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Employees" Relationship="Self.Employees_To_Status" FromRole="EmployeeStatusTable" ToRole="Employees" />
+        </EntityType>
+        <EntityType Name="LeasingCompany">
+          <Key>
+            <PropertyRef Name="LeasingCompanyId" />
+          </Key>
+          <Property Name="LeasingCompanyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LeasingCompanyName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="LeasingCompanyContactInfo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="LeasingCompanyTransportType" Type="Int32" />
+          <Property Name="LeasingCompanyRentCost" Type="Int32" />
+          <Property Name="LeasingCompanyRentTime" Type="Int32" />
+          <NavigationProperty Name="LeasingCompanyTransportTable" Relationship="Self.LC_to_LCT" FromRole="LeasingCompany" ToRole="LeasingCompanyTransportTable" />
+          <NavigationProperty Name="Transport" Relationship="Self.Transport_to_LeasingCompany" FromRole="LeasingCompany" ToRole="Transport" />
+        </EntityType>
+        <EntityType Name="LeasingCompanyTransportTable">
+          <Key>
+            <PropertyRef Name="LSTransportId" />
+          </Key>
+          <Property Name="LSTransportId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LSTransportTypes" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LeasingCompany" Relationship="Self.LC_to_LCT" FromRole="LeasingCompanyTransportTable" ToRole="LeasingCompany" />
+        </EntityType>
+        <EntityType Name="OrderTable">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderItems" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="OrderCost" Type="Int32" />
+          <Property Name="ClientReference" Type="Int32" />
+          <Property Name="StorageReference" Type="Int32" />
+          <Property Name="OrderDuration" Type="Int32" />
+          <Property Name="EmployeeReference" Type="Int32" />
+          <NavigationProperty Name="Client" Relationship="Self.Order_to_Client" FromRole="OrderTable" ToRole="Client" />
+          <NavigationProperty Name="Employees" Relationship="Self.Order_to_Employee" FromRole="OrderTable" ToRole="Employees" />
+          <NavigationProperty Name="Storage" Relationship="Self.FK__OrderTabl__Stora__1BC821DD" FromRole="OrderTable" ToRole="Storage" />
+        </EntityType>
+        <EntityType Name="Storage">
+          <Key>
+            <PropertyRef Name="StorageId" />
+          </Key>
+          <Property Name="StorageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StorageName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="StorageItems" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="StorageType" Type="Int32" />
+          <NavigationProperty Name="OrderTable" Relationship="Self.FK__OrderTabl__Stora__1BC821DD" FromRole="Storage" ToRole="OrderTable" />
+          <NavigationProperty Name="StorageTypeTable" Relationship="Self.Storage_to_StorageTypeTable" FromRole="Storage" ToRole="StorageTypeTable" />
+        </EntityType>
+        <EntityType Name="StorageTypeTable">
+          <Key>
+            <PropertyRef Name="TypeId" />
+          </Key>
+          <Property Name="TypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StorageTypes" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Storage" Relationship="Self.Storage_to_StorageTypeTable" FromRole="StorageTypeTable" ToRole="Storage" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Transport">
+          <Key>
+            <PropertyRef Name="TransportId" />
+          </Key>
+          <Property Name="TransportId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TransportType" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TransportExpluatationCost" Type="Int32" />
+          <Property Name="LeasingCompanyReference" Type="Int32" />
+          <NavigationProperty Name="Carriage" Relationship="Self.FK__Carriage__Transp__0E6E26BF" FromRole="Transport" ToRole="Carriage" />
+          <NavigationProperty Name="LeasingCompany" Relationship="Self.Transport_to_LeasingCompany" FromRole="Transport" ToRole="LeasingCompany" />
+        </EntityType>
+        <Association Name="Employees_to_Carriage">
+          <End Role="Carriage" Type="Self.Carriage" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carriage">
+              <PropertyRef Name="CarriageId" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="CarriageReference" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Carriage__Transp__0E6E26BF">
+          <End Role="Transport" Type="Self.Transport" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Carriage" Type="Self.Carriage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transport">
+              <PropertyRef Name="TransportId" />
+            </Principal>
+            <Dependent Role="Carriage">
+              <PropertyRef Name="TransportReference" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Client_to_ClientStatus">
+          <End Role="ClientStatusTable" Type="Self.ClientStatusTable" Multiplicity="0..1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClientStatusTable">
+              <PropertyRef Name="ClientStatusId" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="ClientStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Order_to_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="OrderTable" Type="Self.OrderTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ClientId" />
+            </Principal>
+            <Dependent Role="OrderTable">
+              <PropertyRef Name="ClientReference" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Employees_To_Status">
+          <End Role="EmployeeStatusTable" Type="Self.EmployeeStatusTable" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeStatusTable">
+              <PropertyRef Name="StatusId" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="EmployeeStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Order_to_Employee">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="OrderTable" Type="Self.OrderTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="EmployeeId" />
+            </Principal>
+            <Dependent Role="OrderTable">
+              <PropertyRef Name="EmployeeReference" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="LC_to_LCT">
+          <End Role="LeasingCompanyTransportTable" Type="Self.LeasingCompanyTransportTable" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="LeasingCompany" Type="Self.LeasingCompany" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LeasingCompanyTransportTable">
+              <PropertyRef Name="LSTransportId" />
+            </Principal>
+            <Dependent Role="LeasingCompany">
+              <PropertyRef Name="LeasingCompanyTransportType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Transport_to_LeasingCompany">
+          <End Role="LeasingCompany" Type="Self.LeasingCompany" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Transport" Type="Self.Transport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LeasingCompany">
+              <PropertyRef Name="LeasingCompanyId" />
+            </Principal>
+            <Dependent Role="Transport">
+              <PropertyRef Name="LeasingCompanyReference" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderTabl__Stora__1BC821DD">
+          <End Role="Storage" Type="Self.Storage" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="OrderTable" Type="Self.OrderTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Storage">
+              <PropertyRef Name="StorageId" />
+            </Principal>
+            <Dependent Role="OrderTable">
+              <PropertyRef Name="StorageReference" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Storage_to_StorageTypeTable">
+          <End Role="StorageTypeTable" Type="Self.StorageTypeTable" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Storage" Type="Self.Storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StorageTypeTable">
+              <PropertyRef Name="TypeId" />
+            </Principal>
+            <Dependent Role="Storage">
+              <PropertyRef Name="StorageType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TechDeliveryEntities11" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Carriage" EntityType="Self.Carriage" />
+          <EntitySet Name="Client" EntityType="Self.Client" />
+          <EntitySet Name="ClientStatusTable" EntityType="Self.ClientStatusTable" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" />
+          <EntitySet Name="EmployeeStatusTable" EntityType="Self.EmployeeStatusTable" />
+          <EntitySet Name="LeasingCompany" EntityType="Self.LeasingCompany" />
+          <EntitySet Name="LeasingCompanyTransportTable" EntityType="Self.LeasingCompanyTransportTable" />
+          <EntitySet Name="OrderTable" EntityType="Self.OrderTable" />
+          <EntitySet Name="Storage" EntityType="Self.Storage" />
+          <EntitySet Name="StorageTypeTable" EntityType="Self.StorageTypeTable" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Transport" EntityType="Self.Transport" />
+          <AssociationSet Name="Employees_to_Carriage" Association="Self.Employees_to_Carriage">
+            <End Role="Carriage" EntitySet="Carriage" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Carriage__Transp__0E6E26BF" Association="Self.FK__Carriage__Transp__0E6E26BF">
+            <End Role="Transport" EntitySet="Transport" />
+            <End Role="Carriage" EntitySet="Carriage" />
+          </AssociationSet>
+          <AssociationSet Name="Client_to_ClientStatus" Association="Self.Client_to_ClientStatus">
+            <End Role="ClientStatusTable" EntitySet="ClientStatusTable" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="Order_to_Client" Association="Self.Order_to_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="OrderTable" EntitySet="OrderTable" />
+          </AssociationSet>
+          <AssociationSet Name="Employees_To_Status" Association="Self.Employees_To_Status">
+            <End Role="EmployeeStatusTable" EntitySet="EmployeeStatusTable" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="Order_to_Employee" Association="Self.Order_to_Employee">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="OrderTable" EntitySet="OrderTable" />
+          </AssociationSet>
+          <AssociationSet Name="LC_to_LCT" Association="Self.LC_to_LCT">
+            <End Role="LeasingCompanyTransportTable" EntitySet="LeasingCompanyTransportTable" />
+            <End Role="LeasingCompany" EntitySet="LeasingCompany" />
+          </AssociationSet>
+          <AssociationSet Name="Transport_to_LeasingCompany" Association="Self.Transport_to_LeasingCompany">
+            <End Role="LeasingCompany" EntitySet="LeasingCompany" />
+            <End Role="Transport" EntitySet="Transport" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderTabl__Stora__1BC821DD" Association="Self.FK__OrderTabl__Stora__1BC821DD">
+            <End Role="Storage" EntitySet="Storage" />
+            <End Role="OrderTable" EntitySet="OrderTable" />
+          </AssociationSet>
+          <AssociationSet Name="Storage_to_StorageTypeTable" Association="Self.Storage_to_StorageTypeTable">
+            <End Role="StorageTypeTable" EntitySet="StorageTypeTable" />
+            <End Role="Storage" EntitySet="Storage" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище TechDeliveryModelContainer" CdmEntityContainer="TechDeliveryEntities11">
+          <EntitySetMapping Name="Carriage">
+            <EntityTypeMapping TypeName="TechDeliveryModel.Carriage">
+              <MappingFragment StoreEntitySet="Carriage">
+                <ScalarProperty Name="CarriageId" ColumnName="CarriageId" />
+                <ScalarProperty Name="CarriageContactInfo" ColumnName="CarriageContactInfo" />
+                <ScalarProperty Name="CarriageDepartureDate" ColumnName="CarriageDepartureDate" />
+                <ScalarProperty Name="CarriageArrivalDate" ColumnName="CarriageArrivalDate" />
+                <ScalarProperty Name="TransportReference" ColumnName="TransportReference" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="TechDeliveryModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="ClientContactInfo" ColumnName="ClientContactInfo" />
+                <ScalarProperty Name="ClientStatus" ColumnName="ClientStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClientStatusTable">
+            <EntityTypeMapping TypeName="TechDeliveryModel.ClientStatusTable">
+              <MappingFragment StoreEntitySet="ClientStatusTable">
+                <ScalarProperty Name="ClientStatusId" ColumnName="ClientStatusId" />
+                <ScalarProperty Name="StatusOfClient" ColumnName="StatusOfClient" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="TechDeliveryModel.Employees">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="EmployeeContactInfo" ColumnName="EmployeeContactInfo" />
+                <ScalarProperty Name="EmployeeExperience" ColumnName="EmployeeExperience" />
+                <ScalarProperty Name="EmployeeStatus" ColumnName="EmployeeStatus" />
+                <ScalarProperty Name="CarriageReference" ColumnName="CarriageReference" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeeStatusTable">
+            <EntityTypeMapping TypeName="TechDeliveryModel.EmployeeStatusTable">
+              <MappingFragment StoreEntitySet="EmployeeStatusTable">
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="CurrentStatus" ColumnName="CurrentStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LeasingCompany">
+            <EntityTypeMapping TypeName="TechDeliveryModel.LeasingCompany">
+              <MappingFragment StoreEntitySet="LeasingCompany">
+                <ScalarProperty Name="LeasingCompanyId" ColumnName="LeasingCompanyId" />
+                <ScalarProperty Name="LeasingCompanyName" ColumnName="LeasingCompanyName" />
+                <ScalarProperty Name="LeasingCompanyContactInfo" ColumnName="LeasingCompanyContactInfo" />
+                <ScalarProperty Name="LeasingCompanyTransportType" ColumnName="LeasingCompanyTransportType" />
+                <ScalarProperty Name="LeasingCompanyRentCost" ColumnName="LeasingCompanyRentCost" />
+                <ScalarProperty Name="LeasingCompanyRentTime" ColumnName="LeasingCompanyRentTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LeasingCompanyTransportTable">
+            <EntityTypeMapping TypeName="TechDeliveryModel.LeasingCompanyTransportTable">
+              <MappingFragment StoreEntitySet="LeasingCompanyTransportTable">
+                <ScalarProperty Name="LSTransportId" ColumnName="LSTransportId" />
+                <ScalarProperty Name="LSTransportTypes" ColumnName="LSTransportTypes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderTable">
+            <EntityTypeMapping TypeName="TechDeliveryModel.OrderTable">
+              <MappingFragment StoreEntitySet="OrderTable">
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="OrderItems" ColumnName="OrderItems" />
+                <ScalarProperty Name="OrderCost" ColumnName="OrderCost" />
+                <ScalarProperty Name="ClientReference" ColumnName="ClientReference" />
+                <ScalarProperty Name="StorageReference" ColumnName="StorageReference" />
+                <ScalarProperty Name="OrderDuration" ColumnName="OrderDuration" />
+                <ScalarProperty Name="EmployeeReference" ColumnName="EmployeeReference" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Storage">
+            <EntityTypeMapping TypeName="TechDeliveryModel.Storage">
+              <MappingFragment StoreEntitySet="Storage">
+                <ScalarProperty Name="StorageId" ColumnName="StorageId" />
+                <ScalarProperty Name="StorageName" ColumnName="StorageName" />
+                <ScalarProperty Name="StorageItems" ColumnName="StorageItems" />
+                <ScalarProperty Name="StorageType" ColumnName="StorageType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StorageTypeTable">
+            <EntityTypeMapping TypeName="TechDeliveryModel.StorageTypeTable">
+              <MappingFragment StoreEntitySet="StorageTypeTable">
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+                <ScalarProperty Name="StorageTypes" ColumnName="StorageTypes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="TechDeliveryModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transport">
+            <EntityTypeMapping TypeName="TechDeliveryModel.Transport">
+              <MappingFragment StoreEntitySet="Transport">
+                <ScalarProperty Name="TransportId" ColumnName="TransportId" />
+                <ScalarProperty Name="TransportType" ColumnName="TransportType" />
+                <ScalarProperty Name="TransportExpluatationCost" ColumnName="TransportExpluatationCost" />
+                <ScalarProperty Name="LeasingCompanyReference" ColumnName="LeasingCompanyReference" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

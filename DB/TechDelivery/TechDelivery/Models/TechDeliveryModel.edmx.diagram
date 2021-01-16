@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f23394ab176d485baa807c0ad5b8b99b" Name="Diagram1" ZoomLevel="86">
+        <EntityTypeShape EntityType="TechDeliveryModel.Carriage" Width="1.5" PointX="8" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechDeliveryModel.Client" Width="1.5" PointX="10.875" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechDeliveryModel.ClientStatusTable" Width="1.5" PointX="10.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechDeliveryModel.Employees" Width="1.5" PointX="10" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechDeliveryModel.EmployeeStatusTable" Width="1.5" PointX="9.125" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechDeliveryModel.LeasingCompany" Width="1.5" PointX="4" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechDeliveryModel.LeasingCompanyTransportTable" Width="1.5" PointX="2" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechDeliveryModel.OrderTable" Width="1.5" PointX="12" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechDeliveryModel.Storage" Width="1.5" PointX="14.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechDeliveryModel.StorageTypeTable" Width="1.5" PointX="14.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechDeliveryModel.sysdiagrams" Width="1.5" PointX="0.5" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechDeliveryModel.Transport" Width="1.5" PointX="6" PointY="1.5" IsExpanded="true" />
+        <AssociationConnector Association="TechDeliveryModel.Employees_to_Carriage" ManuallyRouted="false" />
+        <AssociationConnector Association="TechDeliveryModel.FK__Carriage__Transp__0E6E26BF" ManuallyRouted="false" />
+        <AssociationConnector Association="TechDeliveryModel.Client_to_ClientStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="TechDeliveryModel.Order_to_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="TechDeliveryModel.Employees_To_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="TechDeliveryModel.Order_to_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="TechDeliveryModel.LC_to_LCT" ManuallyRouted="false" />
+        <AssociationConnector Association="TechDeliveryModel.Transport_to_LeasingCompany" ManuallyRouted="false" />
+        <AssociationConnector Association="TechDeliveryModel.FK__OrderTabl__Stora__1BC821DD" ManuallyRouted="false" />
+        <AssociationConnector Association="TechDeliveryModel.Storage_to_StorageTypeTable" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

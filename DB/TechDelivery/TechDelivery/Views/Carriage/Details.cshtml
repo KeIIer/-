@@ -1,0 +1,51 @@
+﻿@model TechDelivery.Models.Carriage
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Carriage</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CarriageContactInfo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CarriageContactInfo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CarriageDepartureDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CarriageDepartureDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CarriageArrivalDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CarriageArrivalDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Transport.TransportType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Transport.TransportType)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CarriageId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

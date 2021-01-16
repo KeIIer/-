@@ -1,0 +1,58 @@
+﻿@model IEnumerable<TechDelivery.Models.LeasingCompany>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Leasing Company Table</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.Label("Company")
+        </th>
+        <th>
+            @Html.Label("Contact Info")
+        </th>
+        <th>
+            @Html.Label("Transport")
+        </th>
+        <th>
+            @Html.Label("Min Rent Cost")
+        </th>
+        <th>
+            @Html.Label("Max Rent Time")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.LeasingCompanyName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LeasingCompanyContactInfo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LeasingCompanyTransportTable.LSTransportTypes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LeasingCompanyRentCost)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LeasingCompanyRentTime)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.LeasingCompanyId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.LeasingCompanyId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.LeasingCompanyId })
+        </td>
+    </tr>
+}
+
+</table>
